@@ -42,7 +42,7 @@ const [username,setUsername]=useState("");
           {
             console.log(response.data.email);
             const email=response.data.email
-            navigate('/2fa/setup',  { state: { qrUrlImage: response.data.qrUrlImage,email }}); // Ensures fresh state
+            navigate('/2fa/setup',  { state: { qrUrlImage: response.data.qrUrlImage,email }});
             
           }
         })

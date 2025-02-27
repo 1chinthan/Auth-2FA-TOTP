@@ -4,7 +4,7 @@ import { Strategy as localStrategy } from "passport-local";
 import {Strategy as TwoFAStartegy} from 'passport-2fa-totp'; */
 /* import { mockUsers } from "../constants/userModel.js"; */
 import { users } from "../constants/database.js";
-
+import bcrypt from 'bcrypt'
 
 passport.use(new localStrategy({usernameField:"email",passwordField:"password"},
     async(email,password,done)=>{
@@ -23,10 +23,14 @@ passport.use(new localStrategy({usernameField:"email",passwordField:"password"},
             console.log("User not found");
             return done(null,false,{message:"User not found"})
         }
+        const Pass= await bcrypt.compare(password,user.password)
+        if(user.email === email && Pass)
+            return done(null,user)
+        return done(null,false,{message:"Username or password incorrect"})
         /* console.log(process.env.JWT_SECRET); */
         /* console.log(user); */
         
-        return done(null,user)
+        
     }
 ))
 

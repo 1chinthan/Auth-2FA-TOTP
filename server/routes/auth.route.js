@@ -6,7 +6,7 @@ import {users} from '../constants/database.js'
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import speakeasy from "speakeasy";
 /* import util from 'util'; */
-
+import axios from 'axios'
 import qrcode from 'qrcode'
 import bcrypt from 'bcrypt'
 /* import { transporter,mailOptions } from "../helpers/email.js"; */
@@ -354,8 +354,8 @@ router.post('/otp',(req,res)=>{
     if (verified) {
         if(!accessToken)
         {
-            const accessToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "30m" });
-            const refreshToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const accessToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1m" });
+            const refreshToken = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "2m" });
             res.cookie("accessToken", accessToken, { httpOnly: true,secure:true,sameSite:"Strict"  });
             res.cookie("refreshToken", refreshToken, { httpOnly: true,secure:true,sameSite:"Strict"  });
         }
@@ -373,6 +373,37 @@ router.post('/otp',(req,res)=>{
     return res.status(400).json({ error: "Wrong token !!!" });
 
 })
+router.post('/verify-captcha', async(req, res) => {
+    const { token } = req.body;
+    console.log("Token: ",token);
+    console.log("Secret: ",process.env.CLOUDFLARE_SECRET_KEY);
+    
+    
+    if (!token) return res.status(400).json({ error: "CAPTCHA missing" });
+    
+    try {
+      const response = await axios.post(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          secret: process.env.CLOUDFLARE_SECRET_KEY,
+          response: token,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+  
+      if (response.data.success) {
+        console.log("Response:   "+response.data.success);
+        
+        return res.json({ message: "CAPTCHA passed!" });
+      } else {
+        return res.status(400).json({ error: "CAPTCHA failed" });
+      }
+    } catch (error) {
+        console.log(error);
+        
+      return res.status(500).json({ error: "Verification error" });
+    }
+  });
 
 router.get('/protected/home',isAuthenticated,(req,res)=>{
     const {username}= req.userData;
@@ -401,5 +432,13 @@ router.get('/logout',isAuthenticated,(req,res)=>{
     }
     return res.status(400).json({error:"Logout failed"})
 })
+
+
+
+
+
+//////////////Bot
+
+
 
 export default router

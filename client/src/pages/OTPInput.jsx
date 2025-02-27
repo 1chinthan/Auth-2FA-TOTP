@@ -67,7 +67,8 @@ const OTPInput = () => {
       }).catch(
         (err)=>{
             console.log("Error: ",err);
-            
+            toast.error('Wrong OTP')
+            navigate('/login')
         }
       )
       

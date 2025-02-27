@@ -1,1 +1,5 @@
-{"_id":"PjWrWOnW5QDZugdj","username":"john doe","password":"$2b$12$VYse8DoYp7wxPj6/T.OcGeIHxgmygqHWzSSo0KG9JcrM4bsgM.L2y","email":"johndoe@gmail.com","istwoFaAuthActive":true,"twoFactorSecret":"ONZUUXJXOQYXQ6ZTIY4WGIKQK5QS6QZDKYTHA5B4KMSGEYLYJVVQ"}
+{"username":"john doe","password":"$2b$12$RreF70.EP36pBNcBRsC2TOV8jyPk3PEiNhPQaIHcXX2cweFKTX3Zu","email":"johndoe@gmail.com","istwoFaAuthActive":true,"twoFactorSecret":"OBNWK33VIMZFQQZ6OZVVQYKWMFIDU5RPNRAFUTTSKVAWM2BBHBWQ","_id":"b8icKv5wfUXQoi37"}
+{"$$deleted":true,"_id":"b8icKv5wfUXQoi37"}
+{"_id":"b8icKv5wfUXQoi37","username":"john doe","password":"$2b$12$RreF70.EP36pBNcBRsC2TOV8jyPk3PEiNhPQaIHcXX2cweFKTX3Zu","email":"johndoe@gmail.com","istwoFaAuthActive":true,"twoFactorSecret":"NFGUKMROJA7WMLSAHJHDEM3VNZVW4MKTHFKE62BDJ4SWM6DQMISA"}
+{"$$deleted":true,"_id":"b8icKv5wfUXQoi37"}
+{"_id":"b8icKv5wfUXQoi37","username":"john doe","password":"$2b$12$RreF70.EP36pBNcBRsC2TOV8jyPk3PEiNhPQaIHcXX2cweFKTX3Zu","email":"johndoe@gmail.com","istwoFaAuthActive":true,"twoFactorSecret":"GNEVU5R7PE7TGVCYFI7SM3KYGFQU4YJGLZAUOZKXKVFVCSDOHZPA"}

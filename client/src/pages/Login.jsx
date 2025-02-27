@@ -17,8 +17,8 @@ const Login = () => {
             });
             
             if(response) {
-                // Redirect to 2FA setup instead of home
-                toast.success("Login successful")
+        
+            toast.success("Login successful")
                 navigate('/otp');
                 setPassword("");
                 setEmail("");
